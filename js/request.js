@@ -73,9 +73,21 @@ function createDocument(preview, download) {
             ];
   }
 
+    if ($('#kolo1:checked').length && $('#kolo2:checked').length)
+        paragraph = 'Podle ustanovení § 33 zákona č. 275/2012 Sb., o volbě prezidenta republiky, tímto žádám o vydání voličského průkazu pro volby prezidenta České republiky a to první kolo 12. a 13. ledna 2018 a druhé kolo 26. a 27. ledna 2018.';
+
+    if ($('#kolo1:checked').length && !$('#kolo2:checked').length)
+        paragraph = 'Podle ustanovení § 33 zákona č. 275/2012 Sb., o volbě prezidenta republiky, tímto žádám o vydání voličského průkazu pro první kolo volby prezidenta České republiky 12. a 13. ledna 2018.';
+
+    if (!$('#kolo1:checked').length && $('#kolo2:checked').length)
+        paragraph = 'Podle ustanovení § 33 zákona č. 275/2012 Sb., o volbě prezidenta republiky, tímto žádám o vydání voličského průkazu pro druhé kolo volby prezidenta České republiky 26. a 27. ledna 2018.';
+
+    if (!$('#kolo1:checked').length && !$('#kolo2:checked').length)
+        paragraph = 'Podle ustanovení § 33 zákona č. 275/2012 Sb., o volbě prezidenta republiky, tímto žádám o vydání voličského průkazu pro volby prezidenta České republiky a to první kolo 12. a 13. ledna 2018 a druhé kolo 26. a 27. ledna 2018.';
 
   if (App.request_form === 'volbaPostouSTrvalymPobytom') {
-    paragraph = 'Podle ustanovení § 6a zákona č. 247/1995 Sb., o volbách do Parlamentu České republiky, tímto žádám o vydání voličského průkazu pro volby do Poslanecké sněmovny Parlamentu České republiky 20. a 21. října 2017.';
+
+
     localaddress = [
       {text: '', style: 'spacesmall'},
       {
@@ -121,7 +133,9 @@ function createDocument(preview, download) {
       }
     ];
   } else if (App.request_form === 'volbaPostouBezTrvalehoPobytu') {
-    paragraph = 'Podle ustanovení § 6a zákona č. 247/1995 Sb., o volbách do Parlamentu České republiky, tímto žádám o vydání voličského průkazu pro volby do Poslanecké sněmovny Parlamentu České republiky 20. a 21. října 2017 a o zaslání voličského průkazu na adresu:';
+
+    paragraph = paragraph + ' Žádám o zaslání průkazu na adresu:';
+
     noTP = [
 
       {text: '', style: 'space'},
@@ -161,7 +175,7 @@ function createDocument(preview, download) {
       },
       {text: '', style: 'space'},
       {
-        text: 'pro hlasování ve volbách do Poslanecké sněmovny Parlamentu ČR v roce 2017',
+        text: 'pro hlasování ve volbách prezidenta české republiky v roce 2018',
         alignment: 'center'
       },
       {text: '', style: 'space'},
@@ -192,7 +206,7 @@ function createDocument(preview, download) {
         alignment: 'center'
       },
       {
-        text: 'pro hlasování ve volbách do Poslanecké sněmovny Parlamentu ČR v roce 2017',
+        text: 'pro hlasování ve volbách prezidenta české republiky v roce 2018',
         style: 'header',
         alignment: 'center'
       },
@@ -378,9 +392,7 @@ function createDocument(preview, download) {
       {text: '', style: 'space'},
       {
         text: [
-          {text: 'Podle ustanovení § 6a zákona č. 247/1995 Sb., o volbách do Parlamentu České republiky,'},
-          {text: 'tímto žádám o vydání voličského průkazu ', bold: true},
-          {text: ' pro volby do Poslanecké sněmovny Parlamentu České republiky 20. a 21. října 2017.'},
+          {text: paragraph}
         ]
       },
       {text: '', style: 'space'},
@@ -438,14 +450,14 @@ function createDocument(preview, download) {
         margin: [0, 20, 0, 0]
       },
       signatureStyle: {
-        margin: [0, -60, 0, 0],
+        margin: [0, -30, 0, 0],
         alignment: 'right'
       },
       signatureTextStyle: {
         decoration: 'overline',
         decorationStyle: 'dotted',
         alignment: 'right',
-        margin: [30, 10],
+        margin: [50, 10],
         fontSize: 9
       }
     }
